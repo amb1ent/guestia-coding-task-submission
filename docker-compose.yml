@@ -1,0 +1,15 @@
+version:  "3"
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest    
+    cap_add: [ 'SYS_PTRACE' ]
+    environment:
+      - "ACCEPT_EULA=1"
+      - "MSSQL_SA_PASSWORD=Guestia123!"
+      - "MSSQL_PID=Express"
+    ports:
+      - "1433:1433"
+    hostname: mssql
+    healthcheck:
+      test: [ "CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P 'Guestia123!' -Q 'SELECT 1' || exit 1" ]
