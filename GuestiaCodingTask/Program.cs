@@ -11,7 +11,7 @@ namespace GuestiaCodingTask
     {
         static string Csv(string input)
         {
-            if (input.IndexOf(',') >= 0)
+            if (input.IndexOf(',') >= 0 || input.IndexOf('\"') >= 0)
             {
                 return $"\"{input.Replace("\"", "\"\"")}\"";
             }
